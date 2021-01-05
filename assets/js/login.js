@@ -12,9 +12,8 @@ $.ajaxPrefilter(function(o) {
     o.url = ' http://api-breakingnews-web.itheima.net' + o.url
 })
 
-let form = layui.form;
-
 // 表单校验
+let form = layui.form;
 form.verify({
     repwd: function(value, item) {
         let pwd = $('.register [name=password]').val()
@@ -61,8 +60,11 @@ $('#loginForm').on('submit', function(e) {
             if (res.status !== 0) {
                 return layer.msg(res.message)
             }
-            layer.msg('登录成功', {
-                time: 1000 //2秒关闭（如果不配置，默认是3秒）
+            // 将token存储到本地
+            localStorage.setItem('token', res.token)
+
+            layer.msg('登录成功，即将跳转到首页', {
+                time: 1000 //1秒关闭（如果不配置，默认是3秒）
             }, function() {
                 location.href = '../../home/index.html'
             });
