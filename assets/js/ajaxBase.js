@@ -8,7 +8,7 @@ $.ajaxPrefilter(function(o) {
         }
     o.complete = function(xhr) {
         // xhr 服务器响应回来的数据
-        console.log(xhr);
+        // console.log(xhr);
         if (xhr.responseJSON.status === 1 && xhr.responseJSON.message === '身份认证失败！') {
             location.href = '/home/login.html'
         }
